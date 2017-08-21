@@ -1,3 +1,4 @@
+import { FormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
@@ -7,7 +8,6 @@ import { HomeComponent } from './components/home/home.component';
 import { FetchDataComponent } from './components/fetchdata/fetchdata.component';
 import { CounterComponent } from './components/counter/counter.component';
 import { VehicleFormComponent } from './components/vehicle-form/vehicle-form.component';
-import { MakeService } from './services/make.service';
 
 export const sharedConfig: NgModule = {
     bootstrap: [ AppComponent ],
@@ -20,6 +20,7 @@ export const sharedConfig: NgModule = {
         VehicleFormComponent
     ],
     imports: [
+        FormsModule,
         RouterModule.forRoot([
             { path: '', redirectTo: 'home', pathMatch: 'full' },
             { path: 'vehicles/new', component: VehicleFormComponent },
@@ -28,8 +29,5 @@ export const sharedConfig: NgModule = {
             { path: 'fetch-data', component: FetchDataComponent },
             { path: '**', redirectTo: 'home' }
         ])
-    ],
-    providers: [
-        MakeService
     ]
 };

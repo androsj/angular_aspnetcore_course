@@ -27,7 +27,7 @@ namespace vega.Persistence
 
         public void AddVehicle(Vehicle vehicle)
         {
-            this.context.Vehicles.Add(vehicle);
+            context.Vehicles.Add(vehicle);
         }
 
         public void RemoveVehicle(Vehicle vehicle)

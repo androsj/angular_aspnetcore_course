@@ -13,7 +13,7 @@ using vega.Persistence;
 using vega.Core;
 using AutoMapper;
 
-namespace WebApplicationBasic
+namespace vega
 {
     public class Startup
     {

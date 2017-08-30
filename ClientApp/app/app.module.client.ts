@@ -18,8 +18,8 @@ import { sharedConfig } from './app.module.shared';
     ],
     providers: [
         { provide: 'ORIGIN_URL', useValue: location.origin },
-        VehicleService,
-        { provide: ErrorHandler, useClass: AppErrorHandler }
+        { provide: ErrorHandler, useClass: AppErrorHandler },
+        VehicleService
     ]
 })
 export class AppModule {

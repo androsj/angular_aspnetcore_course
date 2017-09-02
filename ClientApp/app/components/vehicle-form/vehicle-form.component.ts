@@ -1,3 +1,4 @@
+import { ToastyService } from 'ng2-toasty';
 import * as _ from 'underscore';
 import { SaveVehicle, Vehicle } from './../../models/vehicle';
 import { VehicleService } from './../../services/vehicle.service';
@@ -31,6 +32,7 @@ export class VehicleFormComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private router: Router,
+    private toastyService: ToastyService,
     private vehicleService: VehicleService) {
 
       route.params.subscribe(p => {
@@ -92,7 +94,21 @@ export class VehicleFormComponent implements OnInit {
   }
 
   submit() {
-    this.vehicleService.create(this.vehicle)
+    if (this.vehicle.id) {
+      this.vehicleService.update(this.vehicle)
+        .subscribe(x => {
+          this.toastyService.success({
+            title: 'Success',
+            msg: 'The vehicle was succesfully updated.',
+            theme: 'bootstrap',
+            showClose: true,
+            timeout: 5000
+          });
+        });
+    }
+    else {
+      this.vehicleService.create(this.vehicle)
       .subscribe(x => console.log(x));
+    }
   }
 }

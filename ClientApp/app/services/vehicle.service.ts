@@ -30,6 +30,23 @@ export class VehicleService {
       .map(res => res.json());
   }
 
+  getVehicles(filter) {
+    return this.http.get(this.originUrl + '/api/vehicles?' + this.toQueryString(filter))
+      .map(res => res.json());
+  }
+
+  toQueryString(obj) {
+    let parts = [];
+
+    for (let property in obj) {
+      const value = obj[property];
+      if (value != null && value != undefined)
+        parts.push(encodeURIComponent(property) + '=' + encodeURIComponent(value));
+
+      return parts.join('&');
+    }
+  }
+
   update(vehicle: SaveVehicle) {
     return this.http.put(this.originUrl + '/api/vehicles/' + vehicle.id, vehicle)
       .map(res => res.json());
@@ -37,11 +54,6 @@ export class VehicleService {
 
   delete(id) {
     return this.http.delete(this.originUrl + '/api/vehicles/' + id)
-      .map(res => res.json());
-  }
-
-  getVehicles() {
-    return this.http.get(this.originUrl + '/api/vehicles')
       .map(res => res.json());
   }
 }
